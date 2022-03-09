@@ -1,0 +1,38 @@
+# tasks file
+---
+
+- name: install | additional
+  apt:
+    name: "{{ shinycannon_install }}"
+    state: "{{ apt_install_state | default('latest') }}"
+    update_cache: true
+    cache_valid_time: "{{ apt_update_cache_valid_time | default(3600) }}"
+  tags:
+    - shinycannon-install-additional
+
+- name: install | create (download) directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - "{{ shinycannon_downloads_path }}"
+    - "{{ shinycannon_temp_dir_path }}"
+  tags:
+    - shinycannon-install-download
+    - shinycannon-install-download-directory
+
+- name: install | shinycannon (download)
+  get_url:
+    url: "{{ shinycannon_download_url }}"
+    dest: "{{ shinycannon_downloads_path }}/shinycannon-{{ shinycannon_version }}.deb"
+  tags:
+    - shinycannon-install
+
+- name: install | shinycannon
+  apt:
+    deb: "{{ shinycannon_downloads_path }}/shinycannon-{{ shinycannon_version }}.deb"
+  tags:
+    - shinycannon-install
