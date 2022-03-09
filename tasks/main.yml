@@ -8,3 +8,11 @@
     - _default.yml
   tags:
     - configuration
+    - shinycannon
+    - shinycannon-include-variables
+
+- include_tasks: "install_{{ ansible_distribution | lower }}.yml"
+  tags:
+    - configuration
+    - shinycannon
+    - shinycannon-install

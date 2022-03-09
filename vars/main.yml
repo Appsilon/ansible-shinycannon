@@ -1,2 +1,6 @@
 # vars file
 ---
+shinycannon_downloads_path: /var/lib/ansible/shinycannon/downloads
+shinycannon_temp_dir_path: /tmp/shinycannon
+shinycannon_machine_map:
+  x86_64: amd64
