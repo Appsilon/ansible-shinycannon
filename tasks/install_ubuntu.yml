@@ -1,8 +1,8 @@
 # tasks file
 ---
 
-- name: install | additional
-  apt:
+- name: "install | additional"
+  ansible.builtin.apt:
     name: "{{ shinycannon_install }}"
     state: "{{ apt_install_state | default('latest') }}"
     update_cache: true
@@ -10,8 +10,8 @@
   tags:
     - shinycannon-install-additional
 
-- name: install | create (download) directories
-  file:
+- name: "install | create (download) directories"
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     owner: root
@@ -24,15 +24,18 @@
     - shinycannon-install-download
     - shinycannon-install-download-directory
 
-- name: install | shinycannon (download)
-  get_url:
+- name: "install | shinycannon (download)"
+  ansible.builtin.get_url:
     url: "{{ shinycannon_download_url }}"
     dest: "{{ shinycannon_downloads_path }}/shinycannon-{{ shinycannon_version }}.deb"
+    owner: root
+    group: root
+    mode: 0600
   tags:
     - shinycannon-install
 
 - name: install | shinycannon
-  apt:
+  ansible.builtin.apt:
     deb: "{{ shinycannon_downloads_path }}/shinycannon-{{ shinycannon_version }}.deb"
   tags:
     - shinycannon-install

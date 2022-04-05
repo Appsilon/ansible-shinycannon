@@ -1,7 +1,7 @@
 # tasks file
 ---
-- name: include variables
-  include_vars: "{{ item }}"
+- name: "include variables"
+  ansible.builtin.include_vars: "{{ item }}"
   with_first_found:
     - "_{{ ansible_distribution_release }}.yml"
     - "_{{ ansible_distribution | lower }}.yml"
@@ -11,7 +11,7 @@
     - shinycannon
     - shinycannon-include-variables
 
-- include_tasks: "install_{{ ansible_distribution | lower }}.yml"
+- ansible.builtin.include_tasks: "install_{{ ansible_distribution | lower }}.yml"
   tags:
     - configuration
     - shinycannon
