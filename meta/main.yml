@@ -1,9 +1,8 @@
 # meta file
 ---
 galaxy_info:
-  namespace: appsilon
   role_name: shinycannon
-  author: Appsilon
+  author: appsilon
   company: Appsilon
   description: Set up (the latest version of) RStudio Shinycannon in Debian-like systems
   license: MIT
