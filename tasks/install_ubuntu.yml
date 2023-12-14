@@ -10,32 +10,8 @@
   tags:
     - shinycannon-install-additional
 
-- name: "install | create (download) directories"
-  ansible.builtin.file:
-    path: "{{ item }}"
-    state: directory
-    owner: root
-    group: root
-    mode: 0755
-  loop:
-    - "{{ shinycannon_downloads_path }}"
-    - "{{ shinycannon_temp_dir_path }}"
-  tags:
-    - shinycannon-install-download
-    - shinycannon-install-download-directory
-
-- name: "install | shinycannon (download)"
-  ansible.builtin.get_url:
-    url: "{{ shinycannon_download_url }}"
-    dest: "{{ shinycannon_downloads_path }}/shinycannon-{{ shinycannon_version }}.deb"
-    owner: root
-    group: root
-    mode: 0600
-  tags:
-    - shinycannon-install
-
 - name: install | shinycannon
   ansible.builtin.apt:
-    deb: "{{ shinycannon_downloads_path }}/shinycannon-{{ shinycannon_version }}.deb"
+    deb: "{{ shinycannon_file_destination }}"
   tags:
     - shinycannon-install

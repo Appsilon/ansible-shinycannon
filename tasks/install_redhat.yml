@@ -1,0 +1,16 @@
+# tasks file
+---
+
+- name: "install | additional"
+  ansible.builtin.dnf:
+    name: "{{ shinycannon_install }}"
+    update_cache: true
+  tags:
+    - shinycannon-install-additional
+
+- name: install | shinycannon
+  ansible.builtin.dnf:
+    name: "{{ shinycannon_file_destination }}"
+    disable_gpg_check: true
+  tags:
+    - shinycannon-install

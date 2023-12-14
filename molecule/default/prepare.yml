@@ -1,7 +1,6 @@
 ---
 - name: Prepare
   hosts: all
-  become: true
   tasks:
     # see: https://github.com/geerlingguy/ansible-role-java/issues/64#issuecomment-393299088
     - shell: mkdir -p /usr/share/man/man1/
