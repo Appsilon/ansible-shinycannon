@@ -1,0 +1,6 @@
+# vars file
+---
+shinycannon_download_url: "{{ shinycannon_download_url_without_extension }}shinycannon-{{ shinycannon_version }}.x86_64.rpm"
+
+shinycannon_install:
+  - java-17-openjdk

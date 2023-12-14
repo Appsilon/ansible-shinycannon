@@ -1,3 +1,7 @@
 # vars file
 ---
-shinycannon_download_url: "https://github.com/rstudio/shinycannon/releases/download/v{{ shinycannon_version_short }}/shinycannon_{{ shinycannon_version }}_{{ shinycannon_machine_map[ansible_machine] }}.deb"
+shinycannon_download_url: "{{ shinycannon_download_url_without_extension }}shinycannon_{{ shinycannon_version }}_{{ shinycannon_machine_map[ansible_machine] }}.deb"
+
+shinycannon_install:
+  - default-jdk
+  - default-jre
