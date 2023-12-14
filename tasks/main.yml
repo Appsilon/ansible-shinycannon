@@ -11,13 +11,15 @@
     - shinycannon
     - shinycannon-include-variables
 
-- ansible.builtin.include_tasks: "install_common.yml"
+- name: Include common tasks
+  ansible.builtin.include_tasks: "install_common.yml"
   tags:
     - configuration
     - shinycannon
     - shinycannon-install
 
-- ansible.builtin.include_tasks: "install_{{ ansible_distribution | lower }}.yml"
+- name: Include task for the distribution
+  ansible.builtin.include_tasks: "install_{{ ansible_distribution | lower }}.yml"
   tags:
     - configuration
     - shinycannon
